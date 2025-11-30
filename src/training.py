@@ -4,7 +4,7 @@ Training script for hotel booking cancellation prediction.
 Implements data loading, cleaning, feature engineering, handling class imbalance,
 model training (Logistic Regression, Random Forest, XGBoost) and hyper‑parameter tuning.
 """
-
+import os
 import pandas as pd
 import numpy as np
 import joblib
@@ -167,6 +167,10 @@ def train_models(csv_path: str, model_output_path: str = "models/model_pipeline.
     # ------------------------------------------------------------------
     # 8. Save the tuned pipeline
     # ------------------------------------------------------------------
+
+    dir_name = os.path.dirname(model_output_path)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
     joblib.dump(best_pipe, model_output_path)
     print(f"\nSaved tuned model pipeline to {model_output_path}")
 
@@ -187,10 +191,10 @@ if __name__ == "__main__":
         help="Path to the hotel reservations CSV file",
     )
     parser.add_argument(
-        "--output",
-        type=str,
-        default="model_pipeline.joblib",
-        help="File name for the saved pipeline",
+    "--output",
+    type=str,
+    default="models/model_pipeline.joblib",
+    help="File name for the saved pipeline",
     )
     args = parser.parse_args()
     train_models(args.csv, args.output)
