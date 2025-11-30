@@ -1,8 +1,20 @@
 __pycache__/
 *.pyc
+*.pyo
 *.joblib
 *.png
-top5_features.csv
+*.csv
 .DS_Store
 .vscode/
 .idea/
+*.log
+
+# Keep models folder but ignore contents
+models/*.joblib
+models/*.pkl
+
+# Keep data folder structure
+!data/.gitkeep
+
+# Keep notebooks folder structure
+!notebooks/.gitkeep
