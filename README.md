@@ -67,6 +67,28 @@ Evaluate only:
 python src/evaluation.py
 ```
 
+### Streamlit Web App
+
+Run the interactive web application:
+
+```bash
+streamlit run app.py
+```
+
+The app will open in your browser at `http://localhost:8501`
+
+## Streamlit Cloud Deployment
+
+1. Push your code to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Sign in with GitHub
+4. Click "New app"
+5. Select your repository: `Simranjangra31/Hotel_Booking_Pipeline`
+6. Main file path: `app.py`
+7. Click "Deploy"
+
+**Note**: Make sure to train the model first (`python main.py --test`) so that `models/model_pipeline.joblib` exists.
+
 ## Model Performance
 
 - **Accuracy**: ~88%
