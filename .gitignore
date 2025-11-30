@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.joblib
+*.png
+top5_features.csv
+.DS_Store
+.vscode/
+.idea/
