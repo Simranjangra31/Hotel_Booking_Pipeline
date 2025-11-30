@@ -6,4 +6,3 @@ xgboost
 joblib
 matplotlib
 seaborn
-streamlit
