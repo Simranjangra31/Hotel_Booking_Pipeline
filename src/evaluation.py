@@ -19,11 +19,11 @@ from sklearn.metrics import (
     precision_recall_curve,
 )
 
-from data_loader import load_data
-from preprocess import clean_data, get_preprocessor
-from feature_engineering import add_features
+from src.data_loader import load_data
+from src.preprocessing import clean_data, get_preprocessor
+from src.feature_engineering import add_features
 
-def evaluate_model(csv_path: str, model_path: str = "model_pipeline.joblib"):
+def evaluate_model(csv_path: str, model_path: str = "models/model_pipeline.joblib"):
     # Load data and apply same preprocessing/feature steps
     df_raw = load_data(csv_path)
     df_clean = clean_data(df_raw)
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--csv",
         type=str,
-        default="Hotel Reservations.csv",
+        default="data/Hotel Reservations.csv",
         help="Path to the CSV file used for evaluation",
     )
     parser.add_argument(

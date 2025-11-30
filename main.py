@@ -7,8 +7,8 @@ import argparse
 import logging
 import sys
 
-from train import train_models
-from evaluate import evaluate_model
+from src.training import train_models
+from src.evaluation import evaluate_model
 
 
 def setup_logging():
@@ -24,12 +24,12 @@ def main(csv_path: str, test: bool = False):
     logging.info("Starting the hotel cancellation pipeline")
 
     # Train models (includes SMOTE and hyper‑parameter tuning)
-    train_models(csv_path, model_output_path="model_pipeline.joblib")
+    train_models(csv_path, model_output_path="models/model_pipeline.joblib")
     logging.info("Model training completed")
 
     if test:
         logging.info("Running quick evaluation on the full dataset")
-        evaluate_model(csv_path, model_path="model_pipeline.joblib")
+        evaluate_model(csv_path, model_path="models/model_pipeline.joblib")
         logging.info("Evaluation finished")
 
 
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--csv",
         type=str,
-        default="Hotel Reservations.csv",
+        default="data/Hotel Reservations.csv",
         help="Path to the hotel reservations CSV file",
     )
     parser.add_argument(

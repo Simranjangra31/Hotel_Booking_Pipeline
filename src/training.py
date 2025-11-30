@@ -23,11 +23,11 @@ from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 from imblearn.over_sampling import SMOTE
 
-from data_loader import load_data
-from preprocess import clean_data, get_preprocessor
-from feature_engineering import add_features
+from src.data_loader import load_data
+from src.preprocessing import clean_data, get_preprocessor
+from src.feature_engineering import add_features
 
-def train_models(csv_path: str, model_output_path: str = "model_pipeline.joblib"):
+def train_models(csv_path: str, model_output_path: str = "models/model_pipeline.joblib"):
     # ------------------------------------------------------------------
     # 1. Load & clean data
     # ------------------------------------------------------------------
@@ -183,7 +183,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--csv",
         type=str,
-        default="Hotel Reservations.csv",
+        default="data/Hotel Reservations.csv",
         help="Path to the hotel reservations CSV file",
     )
     parser.add_argument(
