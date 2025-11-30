@@ -81,7 +81,7 @@ def train_models(csv_path: str, model_output_path: str = "models/model_pipeline.
             n_estimators=200, class_weight="balanced", random_state=42, n_jobs=-1
         ),
         "xgb": XGBClassifier(
-            use_label_encoder=False,
+            #use_label_encoder=False,
             eval_metric="logloss",
             scale_pos_weight=ratio,
             random_state=42,
@@ -129,7 +129,7 @@ def train_models(csv_path: str, model_output_path: str = "models/model_pipeline.
     }
     
     xgb_pipe = Pipeline([("preprocess", preprocessor), ("model", XGBClassifier(
-        use_label_encoder=False,
+       # use_label_encoder=False,
         eval_metric="logloss",
         scale_pos_weight=ratio,
         random_state=42,

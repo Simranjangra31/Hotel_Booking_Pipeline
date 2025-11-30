@@ -15,7 +15,7 @@ from src.feature_engineering import add_features
 # Page configuration
 st.set_page_config(
     page_title="Hotel Booking Cancellation Predictor",
-    page_icon="🏨",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -62,11 +62,11 @@ def load_model():
         model = joblib.load('models/model_pipeline.joblib')
         return model
     except FileNotFoundError:
-        st.error("⚠️ Model file not found. Please train the model first by running `python main.py --test`")
+        st.error(" Model file not found. Please train the model first by running `python main.py --test`")
         return None
 
 # Title and description
-st.title("🏨 Hotel Booking Cancellation Predictor")
+st.title(" Hotel Booking Cancellation Predictor")
 st.markdown("""
 This application predicts whether a hotel booking will be **canceled** or **not canceled** 
 using a trained XGBoost model with **94.9% ROC AUC** accuracy.
@@ -74,14 +74,14 @@ using a trained XGBoost model with **94.9% ROC AUC** accuracy.
 
 # Sidebar - Model Information
 with st.sidebar:
-    st.header("📊 Model Information")
+    st.header(" Model Information")
     st.metric("Model", "XGBoost (Tuned)")
     st.metric("ROC AUC", "94.9%")
     st.metric("Accuracy", "87.6%")
     st.metric("F1 Score", "81.8%")
     
     st.markdown("---")
-    st.subheader("🎯 Top Predictors")
+    st.subheader(" Top Predictors")
     st.markdown("""
     1. **Market Segment** (23%)
     2. **Special Requests** (9.6%)
@@ -93,7 +93,7 @@ with st.sidebar:
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("📝 Booking Details")
+    st.subheader(" Booking Details")
     
     # Guest information
     no_of_adults = st.number_input("Number of Adults", min_value=0, max_value=10, value=2)
@@ -111,7 +111,7 @@ with col1:
          "Room_Type 5", "Room_Type 6", "Room_Type 7"])
 
 with col2:
-    st.subheader("🔧 Additional Information")
+    st.subheader(" Additional Information")
     
     # Booking details
     lead_time = st.number_input("Lead Time (days before arrival)", min_value=0, max_value=500, value=50)
@@ -130,7 +130,7 @@ with col2:
         min_value=0, max_value=100, value=0)
 
 # Arrival date
-st.subheader("📅 Arrival Date")
+st.subheader(" Arrival Date")
 col_date1, col_date2, col_date3 = st.columns(3)
 with col_date1:
     arrival_year = st.number_input("Year", min_value=2017, max_value=2030, value=2024)
@@ -141,7 +141,7 @@ with col_date3:
 
 # Predict button
 st.markdown("---")
-if st.button("🔮 Predict Cancellation Risk"):
+if st.button(" Predict Cancellation Risk"):
     model = load_model()
     
     if model is not None:
@@ -180,18 +180,18 @@ if st.button("🔮 Predict Cancellation Risk"):
             
             # Display results
             st.markdown("---")
-            st.subheader("🎯 Prediction Results")
+            st.subheader(" Prediction Results")
             
             if prediction == 1:
                 st.markdown(f"""
                 <div class="prediction-box canceled">
-                    ⚠️ HIGH RISK: Booking Likely to be CANCELED
+                     HIGH RISK: Booking Likely to be CANCELED
                 </div>
                 """, unsafe_allow_html=True)
                 
                 st.error(f"**Cancellation Probability:** {probability[1]*100:.1f}%")
                 
-                st.markdown("### 💡 Recommended Actions:")
+                st.markdown("###  Recommended Actions:")
                 st.markdown("""
                 - Send confirmation email with booking details
                 - Offer flexible cancellation policy
@@ -202,13 +202,13 @@ if st.button("🔮 Predict Cancellation Risk"):
             else:
                 st.markdown(f"""
                 <div class="prediction-box not-canceled">
-                    ✅ LOW RISK: Booking Likely to be CONFIRMED
+                     LOW RISK: Booking Likely to be CONFIRMED
                 </div>
                 """, unsafe_allow_html=True)
                 
                 st.success(f"**Confirmation Probability:** {probability[0]*100:.1f}%")
                 
-                st.markdown("### 💡 Recommended Actions:")
+                st.markdown("###  Recommended Actions:")
                 st.markdown("""
                 - Send standard confirmation email
                 - Prepare room as scheduled
@@ -224,7 +224,7 @@ if st.button("🔮 Predict Cancellation Risk"):
                 st.metric("Canceled Probability", f"{probability[1]*100:.1f}%")
                 
         except Exception as e:
-            st.error(f"❌ Error during prediction: {str(e)}")
+            st.error(f" Error during prediction: {str(e)}")
 
 # Footer
 st.markdown("---")
